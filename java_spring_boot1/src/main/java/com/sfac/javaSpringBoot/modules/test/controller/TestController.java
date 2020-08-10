@@ -12,24 +12,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
+
 /*
-* 192.168.18.62:8085/test/....
-* */
+ * 192.168.18.62:8085/test/....
+ * */
 @Controller
 @RequestMapping("/test")
 public class TestController {
-
-    private final static Logger LOGGER=LoggerFactory.getLogger(TestController.class);
+    //11
+    private final static Logger LOGGER = LoggerFactory.getLogger(TestController.class);
 
     @GetMapping("/testDese")
     @ResponseBody
     public String testDese() {
         return "这是一个很牛的软件。";
     }
-
-
-
-
 
 
     @Value("${server.port}")
