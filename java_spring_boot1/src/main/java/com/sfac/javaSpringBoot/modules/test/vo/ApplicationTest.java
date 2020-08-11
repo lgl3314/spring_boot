@@ -1,4 +1,4 @@
-package com.sfac.javaSpringBoot.modules.vo;
+package com.sfac.javaSpringBoot.modules.test.vo;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;

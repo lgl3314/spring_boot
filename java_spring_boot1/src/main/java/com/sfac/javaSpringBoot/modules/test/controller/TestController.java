@@ -1,17 +1,14 @@
 package com.sfac.javaSpringBoot.modules.test.controller;
 
-import com.sfac.javaSpringBoot.modules.vo.ApplicationTest;
+import com.sfac.javaSpringBoot.modules.test.vo.ApplicationTest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.validation.Valid;
 
 /*
  * 192.168.18.62:8085/test/....
