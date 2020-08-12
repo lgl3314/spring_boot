@@ -1,4 +1,4 @@
-package com.hqyj.javaSpringBoot;
+package com.sfac.javaSpringBoot;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
