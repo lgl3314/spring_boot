@@ -11,12 +11,12 @@ public class CountryServiceImpl implements CountryService {
     @Autowired
     private CountryDao  countryDao;
 
+
     @Override
     public Country getCountryById(int countryId) {
 
         return countryDao.getCountryById(countryId);
     }
-
     @Override
     public Country getCountryByName(String countryName) {
         return countryDao.getCountryByName(countryName);

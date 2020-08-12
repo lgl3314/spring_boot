@@ -14,7 +14,6 @@ public class ApplicationTest {
     private int age;
     private String desc;
     private String random;
-
     public int getPort() {
         return port;
     }

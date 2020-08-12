@@ -19,7 +19,6 @@ public class CityServiceImpl implements CityService {
     @Autowired
     private CityDao cityDao;
 
-
     @Override
     public List<City> getCitiesById(int countryId) {
         //链式表达

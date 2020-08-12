@@ -4,11 +4,11 @@ package com.sfac.javaSpringBoot.modules.common.vo;
  * @Author HymanHu
  * @Date 2020/8/11 15:01
  */
+
 public class SearchVo {
 
 	public final static int DEFAULT_CURRENT_PAGE = 1;
 	public final static int DEFAULT_PAGE_SIZE = 5;
-	
 	private int currentPage;
 	private int pageSize;
 	private String keyWord;

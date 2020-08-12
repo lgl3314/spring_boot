@@ -9,14 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 /*
  * 192.168.18.62:8085/test/....
  * */
 @Controller
 @RequestMapping("/test")
 public class TestController {
-    //11
+
     private final static Logger LOGGER = LoggerFactory.getLogger(TestController.class);
 
     @GetMapping("/testDese")
@@ -24,7 +23,6 @@ public class TestController {
     public String testDese() {
         return "这是一个很牛的软件。";
     }
-
 
     @Value("${server.port}")
     private int port;
