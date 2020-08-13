@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -71,5 +74,28 @@ public class StudentServiceImpl implements StudentService {
         Example<Student> example=Example.of(student,matcher);
         //findAll()里面没有参数，无参构造，全查
         return studentRepository.findAll(example, pageable);
+    }
+
+    @Override
+    public List<Student> getStudentByName(String studentName,int cardId) {
+        if (cardId>0){
+            return studentRepository.getStudentsByParms(studentName,cardId);
+        }else {
+           /*return Optional.ofNullable(studentRepository
+                .findByStudentNameLike(String
+                        .format("%s%S%s","%",studentName,"%")))
+                .orElse(Collections.emptyList());*/
+
+            return Optional.ofNullable(studentRepository
+                    .findTop2ByStudentNameLike(String
+                            .format("%s%S%s","%",studentName,"%")))
+                    .orElse(Collections.emptyList());
+
+      /*   return Optional.ofNullable(studentRepository
+                .findByStudentName(studentName))
+                .orElse(Collections.emptyList());
+*/
+        }
+
     }
 }
