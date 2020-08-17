@@ -11,7 +11,7 @@ public class CountryController {
     @Autowired
     private CountryService countryService;
     /*
-     * 192.168.18.62/api/country/522-------get
+     * 127.0.0.1/api/country/522-------get
      * */
     @GetMapping("/country/{countryId}")
     public Country getCountryById(@PathVariable int countryId) {
@@ -19,10 +19,19 @@ public class CountryController {
     }
 
     /*
-     * 192.168.18.62/api/country/?countryName=china
+     * 127.0.0.1/api/country/?countryName=china
      * */
     @GetMapping("/country")
     public Country getCountryByName(@RequestParam String countryName) {
         return countryService.getCountryByName(countryName);
+    }
+
+
+    /*
+     127.0.0.1/api/redis/country/522
+* */
+    @GetMapping("/redis/country/{countryId}")
+    public Country mograteCountryByRedis(@PathVariable int countryId){
+        return countryService.mograteCountryByRedis(countryId);
     }
 }

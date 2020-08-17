@@ -8,15 +8,15 @@ import java.util.List;
 
 @Repository
 @Mapper
-//
 public interface CountryDao {
-    @Select("select * from m_country where country_id=#{countryId}")
+
+    @Select("select * from m_country where country_id = #{countryId}")
     @Results(id = "countryResults", value = {
             @Result(column = "country_id", property = "countryId"),
             @Result(column = "country_id", property = "cities",
                     javaType = List.class,
                     many = @Many(select =
-                            "com.sfac.javaSpringBoot.modules.test.dao.CityDao.getCitiesByCountryId"))
+                            "com.sfac.javaSpringBoot.modules.test.dao.CityDao.getCitiesById"))
     })
     Country getCountryById(int countryId);
 
