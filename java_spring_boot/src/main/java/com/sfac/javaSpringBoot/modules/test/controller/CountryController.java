@@ -31,7 +31,7 @@ public class CountryController {
      127.0.0.1/api/redis/country/522
 * */
     @GetMapping("/redis/country/{countryId}")
-    public Country mograteCountryByRedis(@PathVariable int countryId){
-        return countryService.mograteCountryByRedis(countryId);
+    public Country migrateCountryByRedis(@PathVariable int countryId){
+        return countryService.migrateCountryByRedis(countryId);
     }
 }

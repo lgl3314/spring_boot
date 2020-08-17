@@ -7,5 +7,5 @@ public interface CountryService {
 
     Country getCountryByName(String countryName);
 
-    Country mograteCountryByRedis(int countryId);
+    Country migrateCountryByRedis(int countryId);
 }

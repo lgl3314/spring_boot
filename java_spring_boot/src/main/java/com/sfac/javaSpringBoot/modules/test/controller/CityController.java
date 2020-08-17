@@ -17,8 +17,12 @@ public class CityController {
     @Autowired
     private CityService cityService;
 
+    /*
+    * 127.0.0.1/api/city/522
+    * */
     @GetMapping("/city/{countryId}")
     public List<City> getCitiesById(@PathVariable int countryId){
+
         return cityService.getCitiesById(countryId);
     }
 
@@ -49,7 +53,8 @@ public class CityController {
      */
     @PostMapping(value = "/city1", consumes = "application/json")
     public Result<City> insertcity(@RequestBody City city){
-         return cityService.insertcity(city);
+
+        return cityService.insertcity(city);
     }
 
 
@@ -59,6 +64,7 @@ public class CityController {
             */
     @PutMapping(value = "/city1", consumes = "application/x-www-form-urlencoded")
     public Result<City> updatecity(@ModelAttribute City city){
+
         return cityService.updatecity(city);
     }
 

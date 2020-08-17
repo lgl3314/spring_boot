@@ -2,6 +2,7 @@ package com.sfac.javaSpringBoot.modules.test.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.sfac.javaSpringBoot.aspect.ServiceAnnotation;
 import com.sfac.javaSpringBoot.modules.commo.vo.Result;
 import com.sfac.javaSpringBoot.modules.commo.vo.SearchVo;
 import com.sfac.javaSpringBoot.modules.test.dao.CityDao;
@@ -23,9 +24,9 @@ public class CityServiceImpl implements CityService {
     private CityDao cityDao;
 
     @Override
+    @ServiceAnnotation(value = "aaa")
     public List<City> getCitiesById(int countryId) {
         //链式表达
-
         return Optional.ofNullable(cityDao.getCitiesById(countryId))
                 .orElse(Collections.emptyList());
     }
@@ -60,9 +61,10 @@ public class CityServiceImpl implements CityService {
 
 
     @Override
-    @Transactional
+    @Transactional(noRollbackFor = ArithmeticException.class)
     public Result<City> updatecity(City city) {
         cityDao.updatecity(city);
+        //int i=1/0;
         return new Result<>(Result.ResultStatus
                 .SUCCESS.status, "Update success",city);
     }

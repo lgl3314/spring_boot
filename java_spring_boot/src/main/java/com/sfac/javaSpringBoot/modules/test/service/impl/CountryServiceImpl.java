@@ -28,7 +28,7 @@ public class CountryServiceImpl implements CountryService {
 
 
     @Override
-    public Country mograteCountryByRedis(int countryId) {
+    public Country migrateCountryByRedis(int countryId) {
         Country country=countryDao.getCountryById(countryId);
         String countryKey = String.format("country%d" ,countryId);
        // redisTemplate.opsForValue().set(countryKey,country);
