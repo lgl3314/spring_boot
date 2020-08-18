@@ -110,14 +110,14 @@ public class TestController {
                 empty = false;
             }
             if (empty) {
-                redirectAttributes.addFlashAttribute("message","请选择需要上传的文件。");
+                redirectAttributes.addFlashAttribute("message","请选择需要下载的文件。");
             } else {
-                redirectAttributes.addFlashAttribute("message","上传成功。");
+                redirectAttributes.addFlashAttribute("message","下载成功。");
             }
 
         } catch (IOException e) {
             e.printStackTrace();
-            redirectAttributes.addFlashAttribute("message","上传失败。");
+            redirectAttributes.addFlashAttribute("message","下载失败。");
         }
 
         return "redirect:/test/index";
