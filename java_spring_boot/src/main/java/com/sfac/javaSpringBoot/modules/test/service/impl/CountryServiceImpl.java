@@ -3,9 +3,8 @@ package com.sfac.javaSpringBoot.modules.test.service.impl;
 import com.sfac.javaSpringBoot.modules.test.dao.CountryDao;
 import com.sfac.javaSpringBoot.modules.test.entity.Country;
 import com.sfac.javaSpringBoot.modules.test.service.CountryService;
-import com.sfac.javaSpringBoot.utls.RedisUtils;
+import com.sfac.javaSpringBoot.utils.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 @Service

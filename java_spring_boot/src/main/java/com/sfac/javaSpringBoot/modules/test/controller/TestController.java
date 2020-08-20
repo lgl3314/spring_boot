@@ -149,6 +149,14 @@ public class TestController {
     }
 
     /*
+    * 127.0.0.1/test/indexSimple
+    * */
+    @GetMapping("/indexSimple")
+    public String indexSimPleTestPage(){
+        return "indexSimple";
+    }
+
+    /*
     * 127.0.0.1/test/index
     * */
     @GetMapping("/index")
@@ -168,7 +176,7 @@ public class TestController {
         modelMap.addAttribute("shopLogo",
                 "http://cdn.duitang.com/uploads/item/201308/13/20130813115619_EJCWm.thumb.700_0.jpeg");
         modelMap.addAttribute("shopLogo",
-                "/upload/1111.png");
+                "/images/111.jpg");
         modelMap.addAttribute("country", country);
         modelMap.addAttribute("cities", cities);
         modelMap.addAttribute("updateCityUri", "/api/city");
