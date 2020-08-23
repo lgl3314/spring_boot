@@ -11,4 +11,10 @@ public interface UserService {
   Result<User> login(User user);
 
   PageInfo<User> getUserBySearchVo(SearchVo searchVo);
+
+  Result<User> updateUser(User user);
+
+  Result<Object> deleteUser(int userId);
+
+  User getUserByUserId(int userId);
 }
