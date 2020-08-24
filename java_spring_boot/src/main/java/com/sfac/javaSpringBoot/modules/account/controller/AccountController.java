@@ -31,4 +31,9 @@ public class AccountController {
     public String userPage(){
         return "index";
     }
+
+    @GetMapping("/profile")
+    public String profilePage(){
+        return "index";
+    }
 }

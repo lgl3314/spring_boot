@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.sfac.javaSpringBoot.modules.account.entity.User;
 import com.sfac.javaSpringBoot.modules.commo.vo.Result;
 import com.sfac.javaSpringBoot.modules.commo.vo.SearchVo;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface UserService {
   Result<User> insertUser(User user);
@@ -17,4 +18,6 @@ public interface UserService {
   Result<Object> deleteUser(int userId);
 
   User getUserByUserId(int userId);
+
+  Result<String> uploadUserImg(MultipartFile file);
 }
