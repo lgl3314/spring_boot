@@ -36,4 +36,13 @@ public class AccountController {
     public String profilePage(){
         return "index";
     }
+
+
+    /*
+    * 127.0.0.1/account/registerVue
+    * */
+    @GetMapping("/registerVue")
+    public String refisterVuePage(){
+        return "indexSimple";
+    }
 }

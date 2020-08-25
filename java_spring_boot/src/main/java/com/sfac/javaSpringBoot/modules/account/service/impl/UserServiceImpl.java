@@ -39,35 +39,39 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public Result<User> insertUser(User user) {
-        User userTem=userDao.getUserByUserName(user.getUserName());
-        if (userTem!=null){
-            return new Result<User>(Result.ResultStatus.SUCCESS.status,"该用户已经存在，请重新更换用户名。");
+        User userTemp = userDao.getUserByUserName(user.getUserName());
+        if (userTemp != null) {
+            return new Result<User>(
+                    Result.ResultStatus.FAILD.status, "该用户已经存在，请更改用户名。");
         }
 
-        user.setPassword(MD5Util.getMD5(user.getPassword()));
         user.setCreateDate(LocalDateTime.now());
+        user.setPassword(MD5Util.getMD5(user.getPassword()));
         userDao.insertUser(user);
+
         userRoleDao.deleteUserRoleByUserId(user.getUserId());
         List<Role> roles = user.getRoles();
-        if(roles!=null && !roles.isEmpty()){
-            /*for (int i = 0; i < roles.size(); i++) {
+        if (roles != null && !roles.isEmpty()) {
+              /*for (int i = 0; i < roles.size(); i++) {
                 userRoleDao.insertUserRole(user.getUserId(),roles.get(i).getRoleId());
             }
             for (Role role:roles){
                 userRoleDao.insertUserRole(user.getUserId(),role.getRoleId());
             }*/
             roles.stream().forEach(item -> {
-                userRoleDao.insertUserRole(user.getUserId(),item.getRoleId());
+                userRoleDao.insertUserRole(user.getUserId(), item.getRoleId());
             });
         }
-        return new Result<User>(Result.ResultStatus.SUCCESS.status,"注册成功。",user);
+
+        return new Result<User>(
+                Result.ResultStatus.SUCCESS.status, "注册成功。", user);
     }
 
     @Override
     public Result<User> login(User user) {
         User userTemp=userDao.getUserByUserName(user.getUserName());
         if (userTemp!=null && userTemp.getPassword().equals(MD5Util.getMD5(user.getPassword()))){
-            return new Result<User>(Result.ResultStatus.SUCCESS.status,"成功。");
+            return new Result<User>(Result.ResultStatus.SUCCESS.status,"登录成功。",user);
         }
         return new Result<User>(Result.ResultStatus.FAILD.status,"用户名或密码错误。" , userTemp);
     }

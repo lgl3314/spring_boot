@@ -76,6 +76,7 @@ public class UserController {
     * */
     @PostMapping(value = "/userImg",consumes = "multipart/form-data")
     public Result<String> uploadFile(@RequestParam MultipartFile file){
-       return userService.uploadUserImg(file);
+
+        return userService.uploadUserImg(file);
     }
 }
