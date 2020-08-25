@@ -145,6 +145,11 @@ public class UserServiceImpl implements UserService {
                 Result.ResultStatus.SUCCESS.status, "Upload success.", relativePath);
     }
 
+    @Override
+    public User getUserByUserName(String userName) {
+        return userDao.getUserByUserName(userName);
+    }
+
    /* @Override
     @Transactional
     public Result<User> updateUserProfile(User user) {
