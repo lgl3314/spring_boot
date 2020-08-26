@@ -48,12 +48,11 @@ public class UserController {
     * 127.0.0.1/api/user---------put
     * {"userName":"lgl1","userImg":"www.com","userId":"2"}
     * */
-    @PutMapping(value = "/user" , consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/user", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Result<User> updateUser(@RequestBody User user) {
         return userService.updateUser(user);
+
     }
-
-
     /*
     * 127.0.0.1/api/user/1--------delete
     * */

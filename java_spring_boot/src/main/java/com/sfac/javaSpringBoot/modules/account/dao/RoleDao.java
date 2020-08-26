@@ -56,7 +56,9 @@ public interface RoleDao {
     @Select("select * from role where role_id=#{roleId}")
     Role getRoleById(int roleId);
 
-    @Select("select * from role where role_name = #{roleName} limit 1")
+    @Select("select * from role where role_name = #{roleName}  limit 1")
     Role getRoleByRoleName(String roleName);
+
+
 }
 

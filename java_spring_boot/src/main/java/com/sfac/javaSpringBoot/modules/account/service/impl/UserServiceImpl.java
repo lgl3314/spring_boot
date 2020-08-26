@@ -12,7 +12,11 @@ import com.sfac.javaSpringBoot.modules.commo.vo.Result;
 import com.sfac.javaSpringBoot.modules.commo.vo.SearchVo;
 import com.sfac.javaSpringBoot.utils.MD5Util;
 import com.sun.org.apache.regexp.internal.RE;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -69,12 +73,32 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Result<User> login(User user) {
-        User userTemp=userDao.getUserByUserName(user.getUserName());
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(user.getUserName(), MD5Util.getMD5(user.getPassword()));
+        usernamePasswordToken.setRememberMe(user.getRememberMe());
+        try {
+            subject.login(usernamePasswordToken);
+            subject.checkRoles();
+            subject.checkRoles();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result<User>(Result.ResultStatus
+                    .FAILD.status,
+                    "用户名或密码错误，请重新输入。");
+
+        }
+
+
+        return new Result<User>(Result.ResultStatus.SUCCESS.status,
+                "登录成功。", user);
+    }
+
+       /* User userTemp=userDao.getUserByUserName(user.getUserName());
         if (userTemp!=null && userTemp.getPassword().equals(MD5Util.getMD5(user.getPassword()))){
             return new Result<User>(Result.ResultStatus.SUCCESS.status,"登录成功。",user);
         }
         return new Result<User>(Result.ResultStatus.FAILD.status,"用户名或密码错误。" , userTemp);
-    }
+    }*/
 
     @Override
 
@@ -93,7 +117,7 @@ public class UserServiceImpl implements UserService {
         //判断用户是否已经存在
         User userTemp=userDao.getUserByUserName(user.getUserName());
         if (userTemp !=null && userTemp.getUserId()!=user.getUserId()){
-            return new Result<User>(Result.ResultStatus.SUCCESS.status,"修改失败，用户名与ID不符。");
+            return new Result<User>(Result.ResultStatus.FAILD.status,"修改失败，用户名与ID不符。");
         }
         userDao.updateUser(user);
         return new Result<User>(Result.ResultStatus.SUCCESS.status,"修改成功。",user);

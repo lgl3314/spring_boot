@@ -32,6 +32,22 @@ public class AccountController {
         return "index";
     }
 
+    /**
+     * 127.0.0.1/account/roles ---- get
+     */
+    @GetMapping("/roles")
+    public String rolesPage() {
+        return "index";
+    }
+
+    /**
+     * 127.0.0.1/account/resources ---- get
+     */
+    @GetMapping("/resources")
+    public String resourcesPage() {
+        return "index";
+    }
+
     @GetMapping("/profile")
     public String profilePage(){
         return "index";

@@ -99,13 +99,13 @@
 
     function initUserTable(pageSize) {
         $('#datatable').DataTable({
-            'paging': true,
-            "serverSide": true,
-            "pagingType": "full_numbers",
-            "pageLength": pageSize,
+            'paging': true, //分页
+            "serverSide": true, //开启后端分页
+            "pagingType": "full_numbers", //分页样式的类型simple/simple_numbers/full/full_numbers
+            "pageLength": pageSize, //定义初始的页长
             "processing": true,
-            "destroy": true,
-            'lengthChange': true,
+            "destroy": true, //允许销毁替换，在表格重新查询时，可以自动销毁以前的data
+            'lengthChange': true, //控制是否能够调整每页的条数
             'searching': true,
             'data-show-refresh': true,
             'ordering': true,
@@ -187,7 +187,6 @@
                 "<a href='javascript:void(0);' onclick='deleteUser(\"" + userId + "\")' class='btn_editcolor'>删除</a>";
         }
     }
-
 
 
     function intAddModal() {
