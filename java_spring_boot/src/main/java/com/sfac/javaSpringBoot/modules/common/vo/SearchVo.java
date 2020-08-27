@@ -1,4 +1,4 @@
-package com.sfac.javaSpringBoot.modules.commo.vo;
+package com.sfac.javaSpringBoot.modules.common.vo;
 /**
  * @Description SearchVo
  * @Author HymanHu

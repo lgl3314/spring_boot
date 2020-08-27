@@ -3,8 +3,9 @@ package com.sfac.javaSpringBoot.modules.account.controller;
 import com.github.pagehelper.PageInfo;
 import com.sfac.javaSpringBoot.modules.account.entity.User;
 import com.sfac.javaSpringBoot.modules.account.service.UserService;
-import com.sfac.javaSpringBoot.modules.commo.vo.Result;
-import com.sfac.javaSpringBoot.modules.commo.vo.SearchVo;
+import com.sfac.javaSpringBoot.modules.common.vo.Result;
+import com.sfac.javaSpringBoot.modules.common.vo.SearchVo;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -77,5 +78,22 @@ public class UserController {
     public Result<String> uploadFile(@RequestParam MultipartFile file){
 
         return userService.uploadUserImg(file);
+    }
+
+
+    /**
+     * 127.0.0.1/api/profile ---- put
+     */
+    @PutMapping(value = "/profile", consumes = "application/json")
+    public Result<User> updateUserProfile(@RequestBody User user) {
+        return userService.updateUserProfile(user);
+    }
+
+    /*
+    * 127.0.0.1/api/logout
+    * */
+    @GetMapping("/logout")
+    public void logout(){
+        userService.logout();
     }
 }

@@ -1,4 +1,4 @@
-package com.sfac.javaSpringBoot.modules.commo.vo;
+package com.sfac.javaSpringBoot.modules.common.vo;
 
 public class Result<T> {
     private int status;

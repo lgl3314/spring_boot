@@ -14,4 +14,6 @@ public interface UserRoleDao {
     void insertUserRole(@Param("userId") int userId,@Param("userId") int roleId);
 
 
+    @Insert("insert user_role(role_id, user_id) value(#{roleId}, #{userId})")
+    void addUserRole(@Param("userId") int userId, @Param("roleId") int roleId);
 }

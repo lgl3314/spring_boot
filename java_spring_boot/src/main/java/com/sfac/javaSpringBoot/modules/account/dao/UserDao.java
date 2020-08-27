@@ -1,8 +1,7 @@
 package com.sfac.javaSpringBoot.modules.account.dao;
 
 import com.sfac.javaSpringBoot.modules.account.entity.User;
-import com.sfac.javaSpringBoot.modules.commo.vo.SearchVo;
-import com.sfac.javaSpringBoot.modules.test.entity.City;
+import com.sfac.javaSpringBoot.modules.common.vo.SearchVo;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 

@@ -1,11 +1,10 @@
 package com.sfac.javaSpringBoot.modules.test.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.sfac.javaSpringBoot.modules.commo.vo.Result;
-import com.sfac.javaSpringBoot.modules.commo.vo.SearchVo;
+import com.sfac.javaSpringBoot.modules.common.vo.Result;
+import com.sfac.javaSpringBoot.modules.common.vo.SearchVo;
 import com.sfac.javaSpringBoot.modules.test.entity.City;
 import com.sfac.javaSpringBoot.modules.test.service.CityService;
-import javafx.scene.shape.VLineTo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

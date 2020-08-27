@@ -1,4 +1,5 @@
-package com.sfac.javaSpringBoot.modules.commo.controller;
+package com.sfac.javaSpringBoot.modules.common.controller;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,4 +16,10 @@ public class CommonController {
     public String dashboardpage(){
         return "index";
     }
+
+     @GetMapping("/403")
+    public String errorPage403(){
+        return "index";
+    }
+
 }

@@ -1,8 +1,8 @@
 package com.sfac.javaSpringBoot.modules.test.service;
 
 import com.github.pagehelper.PageInfo;
-import com.sfac.javaSpringBoot.modules.commo.vo.Result;
-import com.sfac.javaSpringBoot.modules.commo.vo.SearchVo;
+import com.sfac.javaSpringBoot.modules.common.vo.Result;
+import com.sfac.javaSpringBoot.modules.common.vo.SearchVo;
 import com.sfac.javaSpringBoot.modules.test.entity.City;
 
 import java.util.List;

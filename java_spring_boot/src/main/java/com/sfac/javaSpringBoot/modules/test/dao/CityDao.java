@@ -1,6 +1,6 @@
 package com.sfac.javaSpringBoot.modules.test.dao;
 
-import com.sfac.javaSpringBoot.modules.commo.vo.SearchVo;
+import com.sfac.javaSpringBoot.modules.common.vo.SearchVo;
 import com.sfac.javaSpringBoot.modules.test.entity.City;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;

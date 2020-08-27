@@ -1,7 +1,7 @@
 package com.sfac.javaSpringBoot.modules.test.controller;
 
 
-import com.sfac.javaSpringBoot.modules.commo.vo.Result;
+import com.sfac.javaSpringBoot.modules.common.vo.Result;
 import com.sfac.javaSpringBoot.modules.test.entity.Card;
 import com.sfac.javaSpringBoot.modules.test.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;

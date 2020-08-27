@@ -1,7 +1,7 @@
 package com.sfac.javaSpringBoot.modules.test.service.impl;
 
-import com.sfac.javaSpringBoot.modules.commo.vo.Result;
-import com.sfac.javaSpringBoot.modules.commo.vo.SearchVo;
+import com.sfac.javaSpringBoot.modules.common.vo.Result;
+import com.sfac.javaSpringBoot.modules.common.vo.SearchVo;
 import com.sfac.javaSpringBoot.modules.test.entity.Student;
 import com.sfac.javaSpringBoot.modules.test.repository.StudentRepository;
 import com.sfac.javaSpringBoot.modules.test.service.StudentService;

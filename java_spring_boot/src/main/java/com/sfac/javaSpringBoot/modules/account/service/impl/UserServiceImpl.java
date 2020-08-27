@@ -8,22 +8,20 @@ import com.sfac.javaSpringBoot.modules.account.dao.UserRoleDao;
 import com.sfac.javaSpringBoot.modules.account.entity.Role;
 import com.sfac.javaSpringBoot.modules.account.entity.User;
 import com.sfac.javaSpringBoot.modules.account.service.UserService;
-import com.sfac.javaSpringBoot.modules.commo.vo.Result;
-import com.sfac.javaSpringBoot.modules.commo.vo.SearchVo;
+import com.sfac.javaSpringBoot.modules.common.vo.Result;
+import com.sfac.javaSpringBoot.modules.common.vo.SearchVo;
 import com.sfac.javaSpringBoot.utils.MD5Util;
-import com.sun.org.apache.regexp.internal.RE;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.OpenOption;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
@@ -88,6 +86,8 @@ public class UserServiceImpl implements UserService {
 
         }
 
+        Session session=subject.getSession();
+        session.setAttribute("user", (User)subject.getPrincipal());
 
         return new Result<User>(Result.ResultStatus.SUCCESS.status,
                 "登录成功。", user);
@@ -120,6 +120,13 @@ public class UserServiceImpl implements UserService {
             return new Result<User>(Result.ResultStatus.FAILD.status,"修改失败，用户名与ID不符。");
         }
         userDao.updateUser(user);
+        userRoleDao.deleteUserRoleByUserId(user.getUserId());
+        List<Role> roles = user.getRoles();
+        if (roles !=null && !roles.isEmpty()){
+            roles.stream().forEach(item ->{
+                userRoleDao.addUserRole(user.getUserId(), item.getRoleId());
+            });
+        }
         return new Result<User>(Result.ResultStatus.SUCCESS.status,"修改成功。",user);
     }
 
@@ -174,7 +181,7 @@ public class UserServiceImpl implements UserService {
         return userDao.getUserByUserName(userName);
     }
 
-   /* @Override
+    @Override
     @Transactional
     public Result<User> updateUserProfile(User user) {
         User userTemp = userDao.getUserByUserName(user.getUserName());
@@ -185,7 +192,14 @@ public class UserServiceImpl implements UserService {
         userDao.updateUser(user);
 
         return new Result<User>(Result.ResultStatus.SUCCESS.status, "Edit success.", user);
-    }*/
+    }
 
+    @Override
+    public void logout() {
 
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        Session session = subject.getSession();
+        session.setAttribute("user",null);
+    }
 }

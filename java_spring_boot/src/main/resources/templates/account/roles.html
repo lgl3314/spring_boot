@@ -138,9 +138,8 @@ function deleteRole(roleId) {
 //修改 role
 function updateRole() {
 	var role = {};
-	role.roleName = $("#roleNameForEditPage").val();
 	role.roleId = $("#roleIdForEditPage").val();
-	
+	role.roleName = $("#roleNameForEditPage").val();
 	$.ajax({
 		url : "/api/role",
 		type : "put",

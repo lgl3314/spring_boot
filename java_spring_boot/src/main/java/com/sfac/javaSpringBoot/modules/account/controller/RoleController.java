@@ -3,8 +3,8 @@ package com.sfac.javaSpringBoot.modules.account.controller;
 import com.github.pagehelper.PageInfo;
 import com.sfac.javaSpringBoot.modules.account.entity.Role;
 import com.sfac.javaSpringBoot.modules.account.service.RoleSeervice;
-import com.sfac.javaSpringBoot.modules.commo.vo.Result;
-import com.sfac.javaSpringBoot.modules.commo.vo.SearchVo;
+import com.sfac.javaSpringBoot.modules.common.vo.Result;
+import com.sfac.javaSpringBoot.modules.common.vo.SearchVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,6 +35,10 @@ public class RoleController {
         return roleSeervice.editRole(role);
     }
 
+    @PutMapping(value = "/role", consumes = "application/json")
+    public Result<Role> updateRole(@RequestBody Role role) {
+        return roleSeervice.editRole(role);
+    }
 
     @RequestMapping("/role/{roleId}")
     public Role getRole(@PathVariable int roleId) {
