@@ -1,0 +1,115 @@
+一、选择题（共12小题，每小题2.5分，共30分）
+	以下不是spring boot优点的是 ( D )
+		A．快速搭建项目
+		B．简化配置  
+		C．自动配置  
+		D．无需容器
+	Spring Boot配置，以下哪个优先级最高（B ）
+		A、外置：xx.jar同目录下/config/application.properties；
+		B、外置：xx.jar同目录下/config/application.yml；
+		C、内置：src/main/resources/config；
+		D、内置：src/main/resources
+	以下log日志级别哪个最高（D）
+		A、DEBUG
+		B、INFO
+		C、WARN
+		D、ERROR
+	以下不是spring boot的核心注解的是 (D  )
+		A.	@SpringBootConfiguration
+		B.	@EnableAutoConfiguration
+		C.	@ComponentScan
+		D.	@MapperScan
+	要使用springMVC的功能，需要导入那个包 ( C )
+		A．spring-boot-starter-jdbc  
+		B．spring-boot-starter-thymeleaf  
+		C．spring-boot-starter-web  
+		D．mybatis-spring-boot-starter
+	以下哪个注解不能加在类上 ( A )
+		A.	@Controller
+		B.	@ResponseBody
+		C.	@RestController
+		D.	@RequestMapping
+	当控制层上有@RestController注解时，方法中返回一个字符串“<h1>Hello</h1>”，浏览器调用的结果是 ( A )
+		A. 一级标题显示的Hello
+		B.	找不到Hello.html
+		C.	<h1>Hello</>
+		D.	Hello
+	SpringBoot项目中配置文件的格式 (C  )
+		A．properties  
+		B．yml  
+		C．两者都可以
+	不是SpringBoot核心配置文件是（A）
+		A.	bootstrap
+		B.	application
+		C.	application-dev
+	前台使用json参数格式，控制器consumer、参数使用的注解是（A）
+		A、application/josn ---- @RequestBody
+		B、application/josn ---- @ModelAttribute
+		C、application/x-www-form-urlencoded ---- @RequestBody
+		D、application/x-www-form-urlencoded ---- @ModelAttribute
+	@Pointcut("execution(public * com.thornBird.sbd.modules.*.controller.*.*(..))")，第三个*代表（C）
+		A、代表返回类型不限
+		B、代表module下所有子包
+		C、代表所有类
+		D、代表所有方法
+	Url匹配风格中/admin*，以下哪个匹配不正确（C）
+		A、/admin
+		B、/admin1
+		C、/admin123
+		D、/admin/1
+	Mybatis框架中，插入数据使用那个注解（B）
+		A、@Update
+		B、@Insert
+		C、@Select
+		D、@InsertMapping
+
+二、填空题（共5小题，每小题5分，共25分）
+	获取配置文件的属性值，使用哪个注解_________@values_______；
+	Java配置依赖的2个注解是___@bean_______，____@configuration_______;
+	Spring Boot修改tomcat端口号为9090应该怎么写？__server.port=9090_________;
+	自定义拦截器需要实现___Interceptor_____接口；
+	过滤器需要使用___@webfilter______注解;
+	上传文件，使用__@requestparm__接收文件对象，consumer使用_____;
+
+三、问答题（每题5分，共25分）
+	阐述 Spring Boot 特性，举一个例子来解释 Staters 的内容；
+
+               答：1.Starter添加项目依赖
+                      2.bean的自动化配置
+                      3.Spring Boot CLI与Groovy的高效配合
+                      4.Spring Boot Actuator
+
+	Mybatis传参中，#{*}、${*}的区别？
+
+               答：#{*}是预编译处理，${*}是字符替换。 在使用 #{*}时，MyBatis 会将 SQL 中的 #{*}替换成“?”，
+                       配合 PreparedStatement 的 set 方法赋值，这样可以有效的防止 SQL 注入，保证程序的运行安全。
+	
+              简述Restful规则？
+
+             答：1.C-S框架
+                    2.无状态
+                    3.统一接口
+                    4.一致的数据结构
+                    5.系统分层
+                    6.可缓存
+
+	简述Git使用流程，写几个常用Git命令？
+
+                答：在本地新建一个文件夹，作为项目根目录  -->  将本地仓库和远程仓库对接起来  
+                     --> 将远程仓库最新代码拉到我们本地来  --> 将本地push到远程仓库
+                     常用命令：git push origin master    
+                                      git  clone 远程地址
+
+	简述shiro两大功能实现流程；
+
+               答:认证执行流程：构造SecuriManager--->Subject.login()认证
+                                          --->SecuriManager.login()执行认证---->authenticator执行认证
+                                         --->realm获取验证信息
+                     授权流程：构造SecuriManager--->subject.isPermitted()授权
+                                     ----->SecuriManager.isPermitted()授权--->authorizer授权
+                                         --->realm获取资源权限
+
+四、编程题（每题10分，共20分）
+	1、提供一个接口，返回 List<User> 列表，对该列表进行排序、保留10条数据；页面端使用 ajax post 方式提交请求，包装查询参数，获取接口返回数据，并遍历数据渲染到页面上 table 表格中；
+	
+	2、设计一套购物车接口，以 Cookie 或者 redis 实现
