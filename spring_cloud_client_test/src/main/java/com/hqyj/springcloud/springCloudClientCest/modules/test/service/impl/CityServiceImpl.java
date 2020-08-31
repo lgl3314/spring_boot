@@ -7,7 +7,9 @@ import com.hqyj.springcloud.springCloudClientCest.modules.common.vo.SearchVo;
 import com.hqyj.springcloud.springCloudClientCest.modules.test.dao.CityDao;
 import com.hqyj.springcloud.springCloudClientCest.modules.test.entity.City;
 import com.hqyj.springcloud.springCloudClientCest.modules.test.service.CityService;
+import com.sun.xml.internal.ws.wsdl.writer.document.Port;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,11 +21,15 @@ import java.util.Optional;
 @Service
 public class CityServiceImpl implements CityService {
 
+    @Value("${server.port}")
+    private int port;
+
     @Autowired
     private CityDao cityDao;
 
     @Override
     public List<City> getCitiesById(int countryId) {
+        System.out.println("Port = " + port);
         //链式表达
         return Optional.ofNullable(cityDao.getCitiesById(countryId))
                 .orElse(Collections.emptyList());

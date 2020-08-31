@@ -5,9 +5,11 @@ import com.github.pagehelper.PageInfo;
 import com.hqyj.springcloud.springCloudCliendAccound.modules.account.dao.UserDao;
 import com.hqyj.springcloud.springCloudCliendAccound.modules.account.entity.City;
 import com.hqyj.springcloud.springCloudCliendAccound.modules.account.entity.User;
+import com.hqyj.springcloud.springCloudCliendAccound.modules.account.service.TestFeignClient;
 import com.hqyj.springcloud.springCloudCliendAccound.modules.account.service.UserService;
 import com.hqyj.springcloud.springCloudCliendAccound.modules.common.vo.Result;
 import com.hqyj.springcloud.springCloudCliendAccound.modules.common.vo.SearchVo;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +31,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private TestFeignClient testFeignClient;
 
     @Override
     @Transactional
@@ -131,11 +137,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByUserId(int userId) {
-
         User user = userDao.getUserByUserId(userId);
-        List<City> cities =Optional.ofNullable(restTemplate.getForObject(
-                "http://CLIENT-TEST/api/cities/{countryId}",List.class,522))
-                .orElse(Collections.emptyList());
+        List<City> cities = testFeignClient.getCityByCountryId(522);
         user.setCities(cities);
         return user;
     }

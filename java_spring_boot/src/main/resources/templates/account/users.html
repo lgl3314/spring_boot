@@ -189,6 +189,23 @@
         }
     }
 
+    function initRoles(rolesDivId) {
+        $.ajax({
+            url : "/api/roles",
+            type : "get",
+            success : function (rs) {
+                var rolesDiv = $("#" + rolesDivId);
+                $.each(rs, function(i, item) {
+                    rolesDiv.append("<input type='checkbox' value='"
+                        + item.roleId + "'/>" + item.roleName + " ");
+                });
+            },
+            error : function (data) {
+                layer.alert(data.responseText, {icon: 0});
+            }
+        });
+    }
+
 
     function intAddModal() {
         $("#userNameForAddPage").val("");
@@ -227,6 +244,7 @@
             }
         });
     }
+
 
     function initEditModal(userId) {
         initRoles("rolesForEditPage", "roleElementForEdit");

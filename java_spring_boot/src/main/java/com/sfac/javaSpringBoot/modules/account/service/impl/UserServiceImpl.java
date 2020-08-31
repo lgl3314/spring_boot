@@ -124,7 +124,7 @@ public class UserServiceImpl implements UserService {
         List<Role> roles = user.getRoles();
         if (roles !=null && !roles.isEmpty()){
             roles.stream().forEach(item ->{
-                userRoleDao.addUserRole(user.getUserId(), item.getRoleId());
+                userRoleDao.insertUserRole(user.getUserId(), item.getRoleId());
             });
         }
         return new Result<User>(Result.ResultStatus.SUCCESS.status,"修改成功。",user);
