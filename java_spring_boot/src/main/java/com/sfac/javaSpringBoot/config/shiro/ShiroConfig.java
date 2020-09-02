@@ -23,6 +23,7 @@ import java.util.Map;
 @Configuration
 @Component
 public class ShiroConfig  {
+
     @Autowired
     private MyRealm myRealm;
 

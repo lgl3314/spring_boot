@@ -58,6 +58,7 @@ public class UserController {
     * 127.0.0.1/api/user/1--------delete
     * */
     @DeleteMapping("/user/{userId}")
+    @RequiresPermissions(value = "/api/user")
     public Result<Object> deleteUser(@PathVariable int userId) {
         return userService.deleteUser(userId);
     }

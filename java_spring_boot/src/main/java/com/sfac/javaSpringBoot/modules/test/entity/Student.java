@@ -14,7 +14,10 @@ import java.util.List;
 @Entity
 @Table(name = "h_studet")
 public class Student {
+
+    //唯一标识
     @Id
+//    主键生成策略
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int studentId;
     private String studentName;

@@ -52,7 +52,7 @@ public class MyRealm extends AuthorizingRealm {
             String userName = (String) authenticationToken.getPrincipal();
             User user = userService.getUserByUserName(userName);
             if (user == null) {
-                throw new UnknownAccountException("The account do not exist.");
+                throw new UnknownAccountException("该帐户不存在。");
             }
             return new SimpleAuthenticationInfo(user, user.getPassword(), getName());
         }

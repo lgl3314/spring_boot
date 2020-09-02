@@ -17,6 +17,9 @@ public class CommonController {
         return "index";
     }
 
+    /*
+    * 127.0.0.1/common/403
+    * */
      @GetMapping("/403")
     public String errorPage403(){
         return "index";
