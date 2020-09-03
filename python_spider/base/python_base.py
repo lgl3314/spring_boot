@@ -1,5 +1,9 @@
-_author_="liguoliang";
+__author__ ="liguoliang";
+
+import math;
+
 #*********输入输出********
+
 a=111;
 b="lgl";
 print("hello world");
@@ -299,4 +303,4 @@ print(hex(12)); # hex函数，将十进制数转十六进制
 print(math.sqrt(3)); # 求平方根
 print(sum(range(1, 101))); # 求和
 print(sum(list(range(101))));
-print("cdaDcdsa".capitalize()); # 将字符串第一个字符变成大写，其他小写
+
