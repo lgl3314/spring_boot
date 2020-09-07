@@ -20,3 +20,15 @@ def commit_(conn):
 def close_connect_cursor(conn,cus):
     cus.close();
     conn.close();
+
+def execute_(sql):
+    connect, cursor = get_connect_resource();
+    result = None;
+    if sql.startswith("select"):
+        result = execute_query(cursor, sql);
+        close_connect_cursor(connect, cursor);
+    else:
+        result = execute_insert_update_delete(cursor, sql);
+        commit_(connect);
+        close_connect_cursor(connect, cursor);
+    return result
