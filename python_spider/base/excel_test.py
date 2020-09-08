@@ -37,4 +37,4 @@ def write_excel():
     # wb.save(filename="/aaaa/1111.xlsx");
 
 if __name__=="__main__":
-    write_excel()
+    write_excel();

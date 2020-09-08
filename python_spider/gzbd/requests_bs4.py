@@ -26,6 +26,17 @@ __wjw_domain = "http://wsjkw.sc.gov.cn";
 __wjw_base_url = "/scwsjkw/gzbd01/ztwzlmgl.shtml";
 __wjw_base_count=1;
 
+request_headers = {
+    'Host': 'wsjkw.sc.gov.cn',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:77.0) Gecko/20100101 Firefox/77.0',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+    'Accept-Language': 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+    'Accept-Encoding': 'gzip, deflate',
+    'Connection': 'keep-alive',
+    'Cookie': spider_util.get_cookies("%s%s"%(__wjw_domain, __wjw_base_url)),
+    'Upgrade-Insecure-Requests': '1'
+};
+# 获取 gzbd 所有数据
 def gzbd_data():
     all_date =[];
     # 创建新闻列表页url && 获取表页的数据
@@ -49,7 +60,7 @@ def gzbd_data():
 def news_page_data(url):
 
     news_list=[];
-    r=requests.get(url);
+    r=requests.get(url,headers=request_headers);
     r.encoding = r.apparent_encoding;
 
     bs = BeautifulSoup(r.text, "html.parser");
@@ -77,17 +88,37 @@ def new_page_data(url):
     bs = BeautifulSoup(r.text, "html.parser")
     span_list = bs.find_all(name="span", attrs={"style": "font-size: 12pt;"});
     line = span_list[1].get_text();
-    line_re = r'全省累计报告新型冠状病毒肺炎确诊病例(\d+)例\(其中境外输入(\d+)例\），' \
+    # 正则表达式提取数据，并装载到dict
+    line_re_1 = r'全省累计报告新型冠状病毒肺炎确诊病例(\d+)例\(其中境外输入(\d+)例\），' \
               r'累计治愈出院(\d+)例，死亡(\d+)例，目前在院隔离治疗(\d+)例，(\d+)人尚在接受医学观察';
-    rea=re.search(line_re,line);
-    if rea:
-        new_dict["确诊人数"] = rea.group(1);
-        new_dict["境外输入人数"] = rea.group(2);
-        new_dict["治愈人数"] = rea.group(3);
-        new_dict["死亡人数"] = rea.group(4);
-        new_dict["隔离人数"] = rea.group(5);
-        new_dict["观察人数"] = rea.group(6);
-
+    line_re_2 = re.compile(r'全省累计报告新型冠状病毒肺炎确诊病例(\d+)例（其中境外输入(\d+)例），' +
+                          r'累计治愈出院(\d+)例，死亡(\d+)例');
+    line_re_3 = re.compile(r'全省累计报告新型冠状病毒肺炎确诊病例(\d+)例（其中境外输入(\d+)例），' +
+                          r'累计治愈出院(\d+)例,死亡(\d+)例');
+    line_re_4 = re.compile(r'尚在集中隔离医学观察(\d+)例');
+    rea_1 = re.search(line_re_1, line);
+    rea_2 = re.search(line_re_2, line);
+    rea_3 = re.search(line_re_3, line);
+    rea_4 = re.search(line_re_4, line);
+    if rea_1:
+        new_dict["确诊人数"] = rea_1.group(1);
+        new_dict["境外输入数"] = rea_1.group(2);
+        new_dict["治愈人数"] = rea_1.group(3);
+        new_dict["死亡人数"] = rea_1.group(4);
+        new_dict["隔离人数"] = rea_1.group(5);
+        new_dict["观察人数"] = rea_1.group(6);
+    if rea_2:
+        new_dict["确诊人数"] = rea_2.group(1);
+        new_dict["境外输入数"] = rea_2.group(2);
+        new_dict["治愈人数"] = rea_2.group(3);
+        new_dict["观察人数"] = rea_2.group(4);
+    if rea_3:
+        new_dict["确诊人数"] = rea_3.group(1);
+        new_dict["境外输入数"] = rea_3.group(2);
+        new_dict["治愈人数"] = rea_3.group(3);
+        new_dict["观察人数"] = rea_3.group(4);
+    if rea_4:
+        new_dict["观察人数"] = rea_4.group(1);
     return new_dict;
 
 
@@ -97,3 +128,4 @@ if __name__=="__main__":
     # print(new_page_data(url));
     # news_page_data(url);
     gzbd_data();
+
